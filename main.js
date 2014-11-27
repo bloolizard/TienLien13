@@ -52,6 +52,13 @@ function Card(card,suit){
         'Two': 15
     };
 
+    // this is a closure
+    this.getCardRanks = function(){
+        return cardRanks;
+    };
+
+
+
     var suitRanks = {
         'Hearts': 0.4,
         'Diamonds': 0.3,
@@ -59,9 +66,15 @@ function Card(card,suit){
         'Spades': 0.1
     };
 
+    this.getSuitRanks = function(){
+        return suitRanks;
+    };
+
     //validate first
     if (!(card in cardRanks) || !(suit in suitRanks) ){
-        throw "Invalid Card";
+        if (arguments.length !== 0){
+            throw "Invalid Card";
+        }
     }
 
     this.card = card;
@@ -86,10 +99,21 @@ function Card(card,suit){
 function Deck(){
 
     this.deck = [];
-    //initialize:
-    initialize = function(){
 
+    var self = this;
+    //initialize:
+    this.initialize = function(){
+        // get the ranks of the cards
+        var suits = (new Card()).getSuitRanks(),
+            ranks = (new Card()).getCardRanks();
+        for (suit in suits){
+            for (rank in ranks){
+                self.deck.push(new Card(rank, suit));
+            }
+        }
     };
+
+    this.initialize();
 }
 
 // a hand is group of card
@@ -105,7 +129,8 @@ Hand.prototype.getHandRank = function(){
 };
 
 var card = new Card('Ace', 'Spades');
-//var card2 = new Card('Ace', 'Spsades');
-console.log(card);
+var deck = new Deck();
+console.log(deck.deck);
+
 //console.log(card.getCardValue());
 //console.log(card.toString());
