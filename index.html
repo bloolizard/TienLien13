@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    var cards = [];
+
+
+    for (var i = 0; i<52; i++){
+        cards[i] = i;
+    }
+    console.log(cards);
+
+    function shuffle(deck){
+        // get index of an element
+
+        // make it a new index without losing track of the existing index
+
+
+        for (var i = 0; i < deck.length; i++){
+//            deck[i].index(Math.round(Math.random()*52))
+        }
+        return //random deck
+    }
+    shuffle(deck);
+
+    // fill it up
+    // function shuffle
+
+    var cards = [];
+
+    for (var i = 0; i < 52; i++){
+        cards[i] = {id: i + 1};
+    }
+
+    function shuffle(cards){
+        cards.forEach(function (card, index, arr)){
+            var randomindex = Math.round(Math.random() * arr.length);
+            var temp = arr[randomindex];
+            arr[randomindex] = card;
+            card = temp;
+        }
+    }
+
+
+</script>
+</body>
+</html>
